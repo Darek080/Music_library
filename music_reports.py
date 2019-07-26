@@ -1,77 +1,199 @@
 import random
+import time
 
-list_of_all = []
+list_of_all = []                                                        # Wyciąga tekst z pliku i wrzuca do list
 file_base = open('text_albums_data.txt','r')
 for line in file_base.readlines():
-    list_of_all.append(line.rstrip().split(','))
- 
+        list_of_all.append(line.rstrip().split(','))
 file_base.close()
+                
 
-def time_select(year_min,year_max,list_of_all):
+'''class base_list:
+    def bbbb(self, artist, album, year, genre, long):
+                for lists in list_of_all:
+                        self.artist = lists[0]
+                        self.album = lists[1]
+                        self.year = lists[2]
+                        self.genre = lists[3]
+                        self.long = lists[4]
+                print(artist)'''
+
+def time_select(year_min,year_max,list_of_all):                         #def dla wyciagania z listy albomow po dacie
+        list_time = []
+        for line in list_of_all:
+                if int(line[2]) < year_max and int(line[2]) >= year_min :
+                        list_time.append(line)
+        if list_time == []:                
+                print("Don't hawe albums from this years!".center(140,' '))
+        else: 
+                for lines in list_time:       
+                        print(str(lines).center(140,' '))
+
+def all_albums(self):                                                   #def wyswietla wszystkie albumy
+    for line in self:
+        album = line[1]
+        print(album.center(140, " "))
+
+    
+def albums_by_genre(box,list_of_all):                                       #def wyswietla albumy po gatunku
+        select = input()                                       
+        if select == '1':
+                choice = box[0]
+        elif select == '2':
+                choice = box[1]
+        elif select == '3':
+                choice = box[2]
+        elif select == '4':
+                choice = box[3]
+        elif select == '5':
+                return
+        else:
+                print('Wrong select!'.center(140, " "))
+                return
+        list_genre = []
+        for line in list_of_all:
+                if choice in line[3]:
+                        list_genre.append(line)
+        for lines in list_genre:
+                print(str(lines).center(140, " "))
+    
+def albums_time_range():                                                #def wyswietla abumy po dacie
+        swith = input()
+        list_time = []
+        
+        if swith == '1':
+                time_select(1960,1970,list_of_all)
+        elif swith == '2':
+                time_select(1970,1980,list_of_all)        
+        elif swith == '3':
+                time_select(1980,1990,list_of_all)
+        elif swith == '4':
+                time_select(1990,2000,list_of_all)
+        elif swith == '5':
+                time_select(2000,2010,list_of_all)
+        elif swith == '6':
+                time_select(2010,2020,list_of_all)
+        elif swith == '7':
+                time_select(0,1960,list_of_all)
+        else:
+                print('WRONG SELECT'.center(140,' '))
+
+def shortest_longest_album(list_of_all):
+        time_list = []
+        change = []
         
         for line in list_of_all:
-                list_time = []
-                if int(line[2]) < year_max and int(line[2]) >= year_min :
-                        list_time.append(line)        
-                        return list_time
+                change.append(line(float(line[4].replace(':','.'))))
+        time_list = change.sort(change[4])
+        print(time_list.center(140,' '))
+                
+        '''for x in sort_time:
+                sort_time_str.append(str(x))
+        for n in sort_time_str:
+                time_sorts.append(n.replace('.',':'))'''
 
-def all_albums(list_of_all):
-    for line in list_of_all:
-        album = line[1]
-        print(album)
-    
-def albums_by_genre(list_of_all):
-    choise = input('Select the genre: ')
-    list_genre = []
-    for line in list_of_all:
-    
-        if choise in line[3]:
-            list_genre.append(line)
-
-    for line in list_genre:
-        print(line)
-    
-def albums_time_range(list_of_all):
-        swith = input('Select time range: ')
-        
-        if int(swith) == 1:
-                time_select(1960,1969,list_of_all)
-        if swith == 2:
-                time_select(1970,1979,list_of_all)        
-        if swith == 3:
-                time_select(1980,1989,list_of_all)
-        if swith == 4:
-                time_select(1990,1999,list_of_all)
-        if swith == 5:
-                time_select(2000,2009,list_of_all)
-        if swith == 6:
-                time_select(2010,2019,list_of_all)
-        if swith == 7:
-                time_select(0,1959,list_of_all)
+def albums_created_by_artist(box,list_of_all):                                         #def wyswietla abumy po artyscie 
+        select = input() 
+        choice = ()                                      
+        if select == '1':
+                choice = box[0]
+        elif select == '2':
+                choice = box[1]
+        elif select == '3':
+                choice = box[2]
+        elif select == '4':
+                choice = box[3]
+        elif select == '5':
+                choice = box[4]
+        elif select == '6':
+                choice = box[5]
+        elif select == '7':
+                choice = box[6]
+        elif select == '8':
+                choice = box[7]
+        elif select == '9':
+                choice = box[8]
+        elif select == '10':
+                choice = box[9]
+        elif select == '11':
+                return
         else:
-                print('Wrong select')
-        list_time = []
-        print(list_time)
-
-
-def shortest_longest_album():
-        choise = input('Select s to shortest  ')
-        if choise == s:
-                shortest = list_of_all.sort(list_of_all[4])
-                print(shortest)
-
-def albums_created_by_artist():
-        choise = input('Select the Artist: ')
+                print('Wrong select!'.center(140, " "))
         artist = []
         for line in list_of_all:
-        
-                if choise in line[0]:
+                if choice in line[0]:
                         artist.append(line)
+        for lines in artist:
+                
+                '''WYCIAGANIE Z LISTY'''
+                
+                print(str(lines).center(140, " "))
 
-        for line in artist:
-                print(line)
-        pass
+def find_album(box,list_of_all):                                                       #def wyswietla abumy po nazwie albumu
+        select = input() 
+        choice = ()                                      
+        if select == '1':
+                choice = box[0]
+        elif select == '2':
+                choice = box[1]
+        elif select == '3':
+                choice = box[2]
+        elif select == '4':
+                choice = box[3]
+        elif select == '5':
+                choice = box[4]
+        elif select == '6':
+                choice = box[5]
+        elif select == '7':
+                choice = box[6]
+        elif select == '8':
+                choice = box[7]
+        elif select == '9':
+                choice = box[8]
+        elif select == '10':
+                choice = box[9]
+        elif select == '11':
+                choice = box[10]
+        elif select == '0':
+                return
+        else:
+                print('Wrong select!'.center(140, " "))
+        artist = []
+        for line in list_of_all:
+                if choice in line[1]:
+                        artist.append(line)
+        for lines in artist:
+                
+                '''WYCIAGANIE Z LISTY'''
+                
+                print(str(lines).center(140, " "))
+#list_of_all = base_file()
 #print(list_of_all)
+#all_albums(list_of_all)
 #albums_by_genre(list_of_all)
-albums_time_range(list_of_all)
-#---shortest_longest_album()
+#albums_time_range()
+#shortest_longest_album(list_of_all)
+#time_select(1980,1990,list_of_all)
+
+
+'''time_list = []
+        sort_time = []
+        sort_time_str = []
+        time_sorts = []
+        ex_time = []
+        for line in list_of_all:
+                time_list.append(line[4])
+        for i in time_list:
+                sort_time.append(float(i.replace(':','.')))
+                sort_time.sort()
+        for x in sort_time:
+                sort_time_str.append(str(x))
+        for n in sort_time_str:
+                time_sorts.append(n.replace('.',':'))
+        for line in list_of_all:
+                if time_sorts[0] in line:
+                        ex_time.append(line) 
+                else:
+
+
+        print(time_sorts[0] in list_of_all)'''
